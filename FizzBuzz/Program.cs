@@ -1,4 +1,5 @@
 ﻿using System;
+using FizzBuzz.Model;
 
 namespace FizzBuzz
 {
@@ -6,7 +7,21 @@ namespace FizzBuzz
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.Write("Inserisci un numero maggiore di 0: ");
+            var input = new IntegerExpression(Console.ReadLine());
+            if (input.IsPositiveInteger())
+            {
+                for (int i = 1; i <= input.GetIntValue(); ++i)
+                {
+                    var tmp = new IntegerExpression(i);
+                    Console.WriteLine(tmp.GetStringValue());
+                }
+            }
+            else
+            {
+                Console.WriteLine("Non hai inserito un numero.");
+            }
+
         }
     }
 }
