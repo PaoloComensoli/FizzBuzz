@@ -47,7 +47,6 @@ namespace FizzBuzz.Model
             {
                 throw new Exception();
             }
-            var number = int.Parse(_value);
             if (IsDivisibleBy(3) && IsDivisibleBy(5))
             {
                 return "FizzBuzz";
