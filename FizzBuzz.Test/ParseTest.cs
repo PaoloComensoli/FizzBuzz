@@ -1,4 +1,5 @@
 using FizzBuzz.Model;
+using System.Collections.Generic;
 using Xunit;
 
 namespace FizzBuzz.Test
@@ -26,15 +27,31 @@ namespace FizzBuzz.Test
             Assert.Equal(expected, number.IsDivisibleBy(divisor));
         }
 
+        public static List<object[]> listaTest()
+        {
+            return new List<object[]>
+            {
+                new object[] { "2", "1 2" },
+                new object[] { "3", "1 2 Fizz" },
+                new object[] { "7", "1 2 Fizz 4 Buzz Fizz Foo" },
+                new object[] { "21", "1 2 Fizz 4 Buzz Fizz Foo 8 Fizz Buzz 11 Fizz 13 Foo FizzBuzz 16 17 Fizz 19 Buzz FizzFoo" },
+            };
+        }
+
         [Theory]
-        [InlineData("5", "Buzz")]
-        [InlineData("10","Buzz")]
-        [InlineData("7", "7")]
-        [InlineData("15", "FizzBuzz")]
+        [MemberData(nameof(listaTest))]
+
         public void HasStringValue(string input, string expected)
         {
             var number = new IntegerExpression(input);
-            Assert.Equal(expected, number.GetStringValue());
+            string valoreFinale = "";
+            for (int i=1; i<=number.GetIntValue(); i++)
+            {
+                IntegerExpression newInt = new IntegerExpression(i);
+                valoreFinale += (newInt.GetStringValue() + " ");
+            }
+
+            Assert.Equal(expected, valoreFinale.Trim() );
         }
     }
 }

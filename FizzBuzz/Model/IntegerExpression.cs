@@ -48,21 +48,22 @@ namespace FizzBuzz.Model
                 throw new Exception();
             }
             var number = int.Parse(_value);
-            if (IsDivisibleBy(3) && IsDivisibleBy(5))
+            string result = "";
+            if (IsDivisibleBy(3) )
             {
-                return "FizzBuzz";
-            }else if (IsDivisibleBy(3))
-            {
-                return "Fizz";
+                result += "Fizz";
             }
-            else if (IsDivisibleBy(5))
+            if (IsDivisibleBy(5))
             {
-                return "Buzz";
+                result += "Buzz";
             }
-            else
+            if (IsDivisibleBy(7))
             {
+                result += "Foo";
+            }
+            if (result=="")
                 return _value;
-            }
+            return result;
         }
     }
 }
